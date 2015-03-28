@@ -1,0 +1,22 @@
+{
+  "name": "web-chat-node-js",
+  "version": "1.0.0",
+  "description": "Web chat in nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leonardovillela/web-chat-node-js"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "leonardo villela and lucas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leonardovillela/web-chat-node-js/issues"
+  },
+  "homepage": "https://github.com/leonardovillela/web-chat-node-js"
+}
