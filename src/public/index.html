@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="WebChat">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Web Chat - NodeJS</title>
+
+		<link rel="stylesheet" href="../../lib/bootstrap/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/base.css">
+	</head>
+	<body>
+		<main id="wrap">
+			<div ng-include="'partials/menu.html'"></div>
+			
+			<div class="container">
+				<div ui-view></div>
+			</div>
+		</main>
+		
+		<div ng-include="'partials/footer.html'"></div>
+
+		<!-- Jquery -->
+		<script src="../../lib/jquery/dist/jquery.min.js"></script>
+
+		<!-- AngularJS -->
+		<script src="../../lib/angular/angular.min.js"></script>
+
+		<!-- Angular UI Router -->
+		<script src="../../lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+		<!-- BootStrap -->
+		<script src="../../lib/bootstrap/dist/js/bootstrap.js"></script>
+
+		<!-- JS WebChat -->
+		<script src="js/app.js"></script>
+		<script src="js/state.js"></script>
+		<script src="js/services.js"></script>
+		
+		<script src="js/controller/usuario.js"></script>
+	</body>
+</html>
