@@ -1,27 +1,31 @@
 angular.module('usuarioController', [])
 
-.controller('UsuarioHome', ['$scope', '$state', function($scope, $state) {
+.controller('UsuarioHome', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
 	
 	$scope.entrar = function() {
-		if (sessionStorage.getItem('seqUsuario') == null || sessionStorage.getItem('seqUsuario') == undefined) {
-			alert('Precisa se cadastrar');
+		if (sessionStorage.getItem('nome') == null || sessionStorage.getItem('nome') == undefined) {
 			$state.go('usuario.cadastrar');
 		} else {
+			$rootScope.usuario = {nome: sessionStorage.getItem('nome'), id: sessionStorage.getItem('id')};
 			$state.go('usuario.principal');	
 		}
 	};
 }])
 
-.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', function($scope, GerarIdUsuario) {
+.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$rootScope', '$state', function($scope, GerarIdUsuario, $rootScope, $state) {
 	$scope.usuario = {};
 	
 	$scope.cadastrarUsuario = function() {
-		var sequencia =  GerarIdUsuario.sequenciaUsuario;
+		var id =  GerarIdUsuario.sequenciaUsuario;
+		$scope.usuario.id = id;
 		
-		$scope.usuario.seq = sequencia;
+		$rootScope.usuario = {nome: $scope.usuario.nome, id: id};
 		
-		sessionStorage.setItem('seqUsuario', sequencia);
-		sessionStorage.setItem('nome', $scope.usuario.nome);	
+		sessionStorage.setItem('id', id);
+		sessionStorage.setItem('nome', $scope.usuario.nome);
+		
+		$state.go('usuario.principal');
 	};
 }])
+
 ;
