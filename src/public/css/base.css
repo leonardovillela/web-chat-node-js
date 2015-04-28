@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
 	height: 100%;
 }
 
@@ -11,13 +12,47 @@ footer {
 	height: auto !important;
 	height: 100%;
 	/* Negative indent footer by it's height */
+
 	margin: 0 auto -60px;
+}
+
+.fixed-panel {
+	max-height: 25em;
+	overflow-y: scroll;
+}
+
+.div-envio-mensagem {
+	border: 1px solid !important;
+	border-color: #ddd !important;
+}
+
+.input-envio-mensagem {
+	background-color: inherit;
+	border: none;
+	width: 100%;
+	margin-bottom: 0.7em;
+}
+
+.botao-enviar-mensagem {
+	width: 100%;
+}
+
+@media screen and (min-width: 815px) {
+	.input-envio-mensagem {
+		background-color: inherit;
+		border: none;
+		width: 80%;
+	}
+
+	.botao-enviar-mensagem {
+		width: 19%;
+	}
 }
 
 @media screen and (max-width: 815px) {
 	.alinhar-texto-responsivo {
-		padding: 0% 15% 0% 15%;	
-	} 
+		padding: 0% 15% 0% 15%;
+	}
 }
 
 .input-cadastro {
@@ -45,14 +80,12 @@ footer {
 		width: 60%;
 		font-size: 40px;
 	}
-
 	.button-cadastrar {
 		background-color: inherit;
 		width: 18.5%;
 		height: 3.25em;
 		margin-left: 1.25%;
 	}
-
 }
 
 @media screen and (min-width: 1000px) and (max-width: 1199px) {
@@ -64,7 +97,6 @@ footer {
 		margin-left: 1.25%;
 		width: 50%;
 	}
-
 	.button-cadastrar {
 		background-color: inherit;
 		width: 20.5%;
@@ -78,7 +110,7 @@ footer {
 }
 
 .m {
-	margin: 3% 3% 3% 3%;	
+	margin: 3% 3% 3% 3%;
 }
 
 .ml-1 {
@@ -96,7 +128,6 @@ footer {
 .ml-4 {
 	margin-left: 12%
 }
-
 
 .mt-1 {
 	margin-top: 3%;
