@@ -1,18 +1,8 @@
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
-http.listen(3000, function() {
-  console.log('Escutando na porta 3000');
-});
-
-app.get('/hello', function(req, res) {
-  res.send('<h1>Hello world</h1>');
-});
-
-app.get('/chat', function(req, res) {
-	res.sendFile(__dirname + '/public/index.html');
-})
+var path = require('path');
 
 io.on('connection', function(socket) {
 	console.log('Um usuário se conectou ao server');
@@ -25,4 +15,14 @@ io.on('connection', function(socket) {
     	console.log('message: ' + msg);
 		io.emit('chat message', msg);
   	});
+});
+
+
+app.use(express.static(path.join(__dirname, '../../')));
+app.use(express.static(path.join(__dirname, '../public')));
+
+app.set('port', 3000 || process.env.PORT);
+
+var server = app.listen(app.get('port'), function() {
+    console.log('Estou escutando na porta ' + app.get('port'));
 });
