@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install",
-    "start": "node src/restrict/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
