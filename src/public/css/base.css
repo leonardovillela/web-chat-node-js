@@ -31,6 +31,10 @@ footer {
 	border: none;
 	width: 100%;
 	margin-bottom: 0.7em;
+	border-bottom: solid !important;
+  	border-bottom-width: 2px !important;
+  	border-color: inherit !important;
+	
 }
 
 .botao-enviar-mensagem {

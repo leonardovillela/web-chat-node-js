@@ -1,17 +1,21 @@
-<div class="col-xs-8 col-xs-offset-2 mt-1">
+<div class="col-xs-8 col-xs-offset-2 mt-1" ng-controller="MensagemCtrl">
 	<div class="panel panel-primary">
 		<!-- Default panel contents -->
 		<div class="panel-heading">Chat</div>
 
 		<!-- List group -->
 		<ul class="list-group fixed-panel">
-			<li class="list-group-item">Cras justo odioMorbi leo risusMorbi leo risusMorbi leo risusMorbi leo risusMorbi leo risusMorbi leo risusMorbi leo risusMorbi leo risusMorbi leo risus</li>
+			<li class="list-group-item" ng-repeat="mensagem in mensagens">
+				<p class="display-inline"><strong>{{ mensagem.enviadoPor }}</strong> - {{ mensagem.conteudo }}</p>
+
+				<p class="text-right"> {{ mensagem.horario }} </p>
+			</li>
 		</ul>
-		
+
 		<div class="panel-footer div-envio-mensagem">
-			<input type="text" class="input-envio-mensagem" ng-model="usuario.mensagem">
-			<button type="button" class="btn btn-success botao-enviar-mensagem" ng-disabled="!usuario.mensagem">Enviar</button>
+			<input type="text" class="input-envio-mensagem" ng-model="mensagem.conteudo">
+			<button type="button" class="btn btn-success botao-enviar-mensagem" ng-disabled="!mensagem.conteudo" ng-click="enviarMensagem()">Enviar</button>
 		</div>
 	</div>
-	
+
 </div>

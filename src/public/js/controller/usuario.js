@@ -1,6 +1,7 @@
 angular.module('usuarioController', [])
 
-.controller('UsuarioHome', ['$scope', '$state', '$rootScope', function($scope, $state, $rootScope) {
+.controller('UsuarioHome', ['$scope', '$state', '$rootScope', '$modal', function($scope, $state, $rootScope) {
+	
 	
 	$scope.entrar = function() {
 		if (sessionStorage.getItem('nome') == null || sessionStorage.getItem('nome') == undefined) {
