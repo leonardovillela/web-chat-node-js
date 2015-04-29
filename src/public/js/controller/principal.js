@@ -15,18 +15,7 @@ angular.module('trafegoMensagemController', [])
 
 	$rootScope.usuarioConectados = [];
 
-	$scope.mensagens = [
-		{
-			conteudo: 'Testando 123',
-			enviadoPor: 'leonardo',
-			horario: '08:40:30'
-		},
-		{
-			conteudo: 'Testando 1234',
-			enviadoPor: 'yuri',
-			horario: '09:40:30'
-		}
-	];
+	$scope.mensagens = [];
 
 	$scope.enviarMensagem = function () {
 		$scope.mensagem.enviadoPor = sessionStorage.getItem('nome');
