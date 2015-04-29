@@ -23,7 +23,7 @@ io.on('connection', function(socket) {
 app.use(express.static(path.join(__dirname, '../../')));
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
 
 var server = http.listen(app.get('port'), function() {
     console.log('Estou escutando na porta ' + app.get('port'));
