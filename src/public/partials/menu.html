@@ -1,4 +1,4 @@
-<header>
+<header ng-controller="headerCtrl">
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -11,7 +11,7 @@
 				<a class="navbar-brand" ui-sref="home">Web Chat</a> </div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="#contact" ng-click="open()">Usuarios Online</a></li>
+					<li ng-click="mostrarUsuariosConectados();"><a>Usuarios Online</a></li>
 					<li><a href="#contact">Comandos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -20,7 +20,25 @@
 					<li><a href="https://github.com/leonardovillela/web-chat-node-js/issues">Reportar Bug</a></li>
 				</ul>
 			</div>
-			<!--/.nav-collapse -->
 		</div>
 	</nav>
+
+    <div ng-controller="ModalDemoCtrl">
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3 class="modal-title">Usuarios Online</h3>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    <li ng-repeat="usuarios in usuariosConectados">
+                        <a>{{ usuarios.nome }}</a>
+                    </li>
+                </ul>
+           
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+        </script>
+    </div>
 </header>

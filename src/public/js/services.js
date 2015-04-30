@@ -6,4 +6,9 @@ angular.module('services', [])
 	return {
 		sequenciaUsuario: ++seq
 	};
-}]);
+}])
+
+.factory('WebSocketProvider', [function() {
+	return io();
+}])
+;

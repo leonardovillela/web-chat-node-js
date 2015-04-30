@@ -1,19 +1,15 @@
 angular.module('trafegoMensagemController', [])
 
-.controller('MensagemCtrl', ['$scope', 'ExtractData', '$rootScope', function ($scope, ExtractData, $rootScope) {
-	var socket = io();
-
-	socket.on('connect', function () {
-		$rootScope.usuarioConectados.push(sessionStorage.getItem('nome'));
-	});
+.controller('MensagemCtrl', ['$scope', 'ExtractData', 'WebSocketProvider', function ($scope, ExtractData, 
+		WebSocketProvider) {
+		
+	var socket = WebSocketProvider;
 
 	socket.on('chat message', function (msg) {
 		$scope.mensagens.push(msg);
 
 		$scope.$digest();
 	});
-
-	$rootScope.usuarioConectados = [];
 
 	$scope.mensagens = [];
 
