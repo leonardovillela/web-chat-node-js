@@ -4,13 +4,22 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 
+var usuariosConectados = [];
+
 io.emit('chat message', { for: 'everyone' });
 
-io.on('connection', function(socket) {
-	console.log('Um usuário se conectou ao server');
+io.on('connection', function(socket) {	
+	socket.on('add usuario', function(usuario) {
+		usuariosConectados.push(usuario);
+		console.log(usuariosConectados);
+	});
+	
+	socket.on('user connecteds', function() {
+		io.emit('usuarios conectados', usuariosConectados);
+	});
 	
 	socket.on('disconnect', function() {
-		console.log('Usuário se desconectou.');
+		io.emit('chat message', 'o usuario');
 	});
 	
 	socket.on('chat message', function(msg){
@@ -23,7 +32,7 @@ io.on('connection', function(socket) {
 app.use(express.static(path.join(__dirname, '../../')));
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.set('port', process.env.OPENSHIFT_NODEJS_PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 
 var server = http.listen(app.get('port'), function() {
     console.log('Estou escutando na porta ' + app.get('port'));
