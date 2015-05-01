@@ -1,24 +1,18 @@
-angular.module('WebChat')
+angular.module('menuController', [])
 
-.controller('headerCtrl', ['$scope', 'WebSocketProvider', '$rootScope', function($scope, WebSocketProvider, $rootScope) {
+.controller('headerCtrl', ['$scope', 'WebSocketProvider', '$rootScope', '$state', function($scope, 						WebSocketProvider, $rootScope, $state) {
+	
 	$scope.mostrarUsuariosConectados = function() {
-		WebSocketProvider.emit('user connecteds');
+		WebSocketProvider.emit('get usersConnected');
 		
-		WebSocketProvider.on('usuarios conectados', function(usuarios) {
+		WebSocketProvider.on('send usersConnected', function(usuarios) {
+			alert('entrei');
 			$rootScope.usuariosConectados = usuarios;
             $rootScope.open();
 		});
+			
 	};
 }])
-
-.controller('ModalInstanceCtrl', function ($scope, $modalInstance, usuariosConectados) {
-
-    $scope.usuariosConectados = usuariosConectados;
-    
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
-})
 
 .controller('ModalDemoCtrl', function ($scope, $modal, $log, $rootScope) {    
     
@@ -33,6 +27,15 @@ angular.module('WebChat')
             }
           }
         });
+    };
+})
+
+.controller('ModalInstanceCtrl', function ($scope, $modalInstance, usuariosConectados) {
+
+    $scope.usuariosConectados = usuariosConectados;
+    
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
     };
 })
 

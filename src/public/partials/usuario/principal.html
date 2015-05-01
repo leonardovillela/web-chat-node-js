@@ -13,7 +13,7 @@
 		</ul>
 
 		<div class="panel-footer div-envio-mensagem">
-			<input type="text" class="input-envio-mensagem" ng-model="mensagem.conteudo">
+			<input type="text" class="input-envio-mensagem" ng-model="mensagem.conteudo" ng-enter="enviarMensagem()">
 			<button type="button" class="btn btn-success botao-enviar-mensagem" ng-disabled="!mensagem.conteudo" ng-click="enviarMensagem()">Enviar</button>
 		</div>
 	</div>

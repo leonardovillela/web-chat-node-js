@@ -5,32 +5,31 @@ angular.module('usuarioController', [])
 	$scope.entrar = function() {
 		if (sessionStorage.getItem('nome') == null || sessionStorage.getItem('nome') == undefined) {
 			$state.go('usuario.cadastrar');
-		} else {
-			$rootScope.usuario = {nome: sessionStorage.getItem('nome'), id: sessionStorage.getItem('id')};
-			$state.go('usuario.principal');	
+		} else {	
+			$rootScope.usuario = {
+				nome: sessionStorage.getItem('nome'), 
+				id: sessionStorage.getItem('id')
+			};
+
+			$state.go('usuario.principal');		
 		}
 	};
 }])
 
-.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'WebSocketProvider', function($scope, GerarIdUsuario,
-		 $state, WebSocketProvider) {
+.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'WebSocketProvider', function($scope, 			GerarIdUsuario,	$state, WebSocketProvider) {
 	$scope.usuario = {};
 	
 	$scope.cadastrarUsuario = function() {
 		var socket = WebSocketProvider;
 		
-		var id =  GerarIdUsuario.sequenciaUsuario;
-		$scope.usuario.id = id;
+		GerarIdUsuario.get({}, function(resp) {
+			$scope.usuario.id = resp.id;
 		
-		sessionStorage.setItem('id', id);
-		sessionStorage.setItem('nome', $scope.usuario.nome);
-		
-		socket.emit('add usuario', {
-			id: $scope.usuario.id,
-			nome: $scope.usuario.nome
-		});
-		
-		$state.go('usuario.principal');
+			sessionStorage.setItem('id', resp.id);
+			sessionStorage.setItem('nome', $scope.usuario.nome);
+
+			$state.go('usuario.principal');
+		});	
 	};
 }])
 

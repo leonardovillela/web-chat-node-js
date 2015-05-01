@@ -4,6 +4,11 @@ angular.module('trafegoMensagemController', [])
 		WebSocketProvider) {
 		
 	var socket = WebSocketProvider;
+	
+	socket.emit('add usuario', {
+		id: sessionStorage.getItem('id'),
+		nome: sessionStorage.getItem('nome')
+	});
 
 	socket.on('chat message', function (msg) {
 		$scope.mensagens.push(msg);
@@ -14,6 +19,7 @@ angular.module('trafegoMensagemController', [])
 	$scope.mensagens = [];
 
 	$scope.enviarMensagem = function () {
+		if ($scope.mensagem.conteudo == '') return;
 		$scope.mensagem.enviadoPor = sessionStorage.getItem('nome');
 		$scope.mensagem.horario = ExtractData.getHorario(new Date());
 

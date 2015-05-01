@@ -1,7 +1,7 @@
 <div class="jumbotron mt-2" ng-controller="UsuarioCadastro">
 	<form name="cadastro" novalidate>
 		<h1 class="display-inline">Nome:</h1>
-		<input class="input-cadastro" type="text" ng-model="usuario.nome" ng-required="true">
+		<input class="input-cadastro" type="text" ng-model="usuario.nome" ng-required="true" ng-enter="cadastrarUsuario()">
 		<button type="button" class="btn btn-default button-cadastrar" ng-click="cadastrarUsuario()" ng-disabled="cadastro.$invalid">Cadastrar</button>
 	</form>
 </div>

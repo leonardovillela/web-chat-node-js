@@ -1,4 +1,6 @@
 angular.module('WebChat', [
+	'ngResource',
+	
 	'ui.router',
 	'ui.bootstrap',
 	
@@ -6,5 +8,6 @@ angular.module('WebChat', [
 	'utils',
 	
 	'usuarioController',
-	'trafegoMensagemController'
+	'trafegoMensagemController',
+	'menuController'
 ]);
