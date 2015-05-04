@@ -16,9 +16,11 @@ angular.module('usuarioController', [])
 	};
 }])
 
-.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'WebSocketProvider', function($scope, 			GerarIdUsuario,	$state, WebSocketProvider) {
+.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'WebSocketProvider', 'helloProvider',
+		function($scope, GerarIdUsuario, $state, WebSocketProvider, helloProvider) {
+
 	$scope.usuario = {};
-	
+			
 	$scope.cadastrarUsuario = function() {
 		var socket = WebSocketProvider;
 		
@@ -29,8 +31,20 @@ angular.module('usuarioController', [])
 			sessionStorage.setItem('nome', $scope.usuario.nome);
 
 			$state.go('usuario.principal');
-		});	
+		});
 	};
+	
+	$scope.cadastrarSocial = function(redeSocial) {
+		helloProvider(redeSocial).login();
+	};
+	
+	helloProvider.on('auth.login', function(auth) {
+		helloProvider(auth.network).api('/me').then(function(responseDataUser) {			
+			$scope.usuario.nome = responseDataUser.first_name + ' ' + responseDataUser.last_name;
+			
+			$scope.cadastrarUsuario();
+		});
+	});
 }])
 
 ;

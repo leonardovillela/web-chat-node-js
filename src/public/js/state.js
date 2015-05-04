@@ -1,6 +1,7 @@
 angular.module('WebChat')
 
 .config(function($stateProvider, $urlRouterProvider) {
+	
 	$urlRouterProvider.otherwise('/home');
 	
 	$stateProvider

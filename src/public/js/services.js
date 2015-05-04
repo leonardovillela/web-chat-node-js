@@ -7,4 +7,5 @@ angular.module('services', [])
 .factory('WebSocketProvider', [function() {
 	return io();
 }])
+
 ;
