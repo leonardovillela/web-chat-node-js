@@ -39,7 +39,8 @@ angular.module('usuarioController', [])
 	};
 	
 	helloProvider.on('auth.login', function(auth) {
-		helloProvider(auth.network).api('/me').then(function(responseDataUser) {			
+		helloProvider(auth.network).api('/me').then(function(responseDataUser) {
+			
 			$scope.usuario.nome = responseDataUser.first_name + ' ' + responseDataUser.last_name;
 			
 			$scope.cadastrarUsuario();

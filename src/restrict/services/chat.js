@@ -1,18 +1,24 @@
+var arrayUtils = require('mout/array');
+var usuariosConectados = [];
+
 exports.start = function(io) {
-	var usuariosConectados = [];
 	
 	io.emit('chat message', { for: 'everyone' });
 	
 	io.on('connection', function(socket) {	
 		
 		socket.on('add usuario', function(usuario) {
-			usuariosConectados.push({usuario: usuario, socketIO: socket});   //A merda é no socket mesmo rever essa porra
-			console.log(usuariosConectados);
+			usuariosConectados.push({usuario: usuario, socketIO: socket});
 		});
-
+		
 		socket.on('get usersConnected', function() {
-			console.log('entrei aaaa');
-			io.emit('send usersConnected', usuariosConectados);
+			var usuarios = [];
+			
+			usuariosConectados.forEach(function(elemento) {
+				usuarios.push(elemento.usuario);	
+			});
+			
+			socket.emit('send usersConnected', usuarios);
 		});
 
 		socket.on('disconnect', function() {

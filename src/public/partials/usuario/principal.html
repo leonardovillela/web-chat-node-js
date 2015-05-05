@@ -6,8 +6,11 @@
 		<!-- List group -->
 		<ul class="list-group fixed-panel">
 			<li class="list-group-item" ng-repeat="mensagem in mensagens">
-				<p class="display-inline"><strong>{{ mensagem.enviadoPor }}</strong> - {{ mensagem.conteudo }}</p>
-
+				
+				 <p class="display-inline"><strong>{{ mensagem.enviadoPor }}</strong> -
+					 <p class="display-inline" ng-bind-html="mensagem.conteudo | emoji"></p>
+				</p>
+				
 				<p class="text-right"> {{ mensagem.horario }} </p>
 			</li>
 		</ul>

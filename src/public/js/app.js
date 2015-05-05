@@ -3,8 +3,11 @@ angular.module('WebChat', [
 
 	'ui.router',
 	'ui.bootstrap',
-
+	
+	'ngSanitize',
 	'ngHello',
+	'emoji',
+	
 	'services',
 	'utils',
 

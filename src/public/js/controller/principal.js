@@ -17,12 +17,12 @@ angular.module('trafegoMensagemController', [])
 	});
 
 	$scope.mensagens = [];
-
+	
 	$scope.enviarMensagem = function () {
 		if ($scope.mensagem.conteudo == '') return;
 		$scope.mensagem.enviadoPor = sessionStorage.getItem('nome');
 		$scope.mensagem.horario = ExtractData.getHorario(new Date());
-
+		
 		socket.emit('chat message', $scope.mensagem);
 		$scope.mensagem.conteudo = '';
 	};
