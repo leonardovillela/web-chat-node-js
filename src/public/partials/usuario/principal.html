@@ -11,7 +11,7 @@
 					 <p class="display-inline" ng-bind-html="mensagem.conteudo | emoji"></p>
 				</p>
 				
-				<p class="text-right"> {{ mensagem.horario }} </p>
+				<p class="text-right"> {{ mensagem.horario | date : 'HH:mm:ss' }} </p>
 			</li>
 		</ul>
 

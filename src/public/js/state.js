@@ -9,9 +9,6 @@ angular.module('WebChat')
 	.state('home', {
 		url: '/home',
 		templateUrl: '/src/public/partials/home.html',
-		controller: function($scope) {
-			$scope.dogs = ['Husk', 'Sao Bernado', 'Root'];
-		},
 	})
 	
 	.state('usuario', {
@@ -22,6 +19,14 @@ angular.module('WebChat')
 		.state('usuario.principal', {	
 			url: '/principal',
 			templateUrl: '/src/public/partials/usuario/principal.html',
+			resolve: {
+				socket: function(WebSocketProvider) {
+					return WebSocketProvider;
+				}
+			},
+			onExit: function(socket){
+    			socket.emit('delelete user');
+  			},
 		})
 	
 		.state('usuario.cadastrar', {

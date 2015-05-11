@@ -16,14 +16,12 @@ angular.module('usuarioController', [])
 	};
 }])
 
-.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'WebSocketProvider', 'helloProvider',
-		function($scope, GerarIdUsuario, $state, WebSocketProvider, helloProvider) {
+.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'helloProvider',
+		function($scope, GerarIdUsuario, $state, helloProvider) {
 
 	$scope.usuario = {};
 			
 	$scope.cadastrarUsuario = function() {
-		var socket = WebSocketProvider;
-		
 		GerarIdUsuario.get({}, function(resp) {
 			$scope.usuario.id = resp.id;
 		

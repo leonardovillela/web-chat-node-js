@@ -9,7 +9,6 @@ angular.module('WebChat', [
 	'emoji',
 	
 	'services',
-	'utils',
 
 	'usuarioController',
 	'trafegoMensagemController',
