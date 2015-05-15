@@ -1,22 +1,46 @@
-<div class="jumbotron mt-2" ng-controller="UsuarioCadastro">
-	<form name="cadastro" novalidate>
-		<h1 class="display-inline">Nome:</h1>
-		<input class="input-cadastro" type="text" ng-model="usuario.nome" ng-required="true" ng-enter="cadastrarUsuario()">
-		<button type="button" class="btn btn-default button-cadastrar" ng-click="cadastrarUsuario()" ng-disabled="cadastro.$invalid">Cadastrar</button>
-		
-		<div class="mt-1">
-			<div class="col-xs-6">
-				<a class="btn btn-block btn-social btn-facebook" ng-click="cadastrarSocial('facebook')">
-					<i class="fa fa-facebook"></i> Entrar com facebook
-				</a>
+<div class="jumbotron m" ng-controller="UsuarioCadastro">
+
+	<form ng-submit="cadastrarUsuario()" name="cadastro" novalidate>
+
+		<div class="row">
+			<div class="form-group col-xs-6">
+				<label for="nome" class="display-inline">Apelido:*</label>
+				<input id="nome" class="form-control" type="text" ng-model="usuario.nome" ng-required="true">
 			</div>
 
+			<div class="form-group col-xs-6">
+				<label for="senha" class="display-inline">Senha:*</label>
+				<input id="senha" class="form-control" type="text" ng-model="usuario.senha" ng-required="true">
+			</div>
+		</div>
 
-			<div class="col-xs-6">
-				<a class="btn btn-block btn-social btn-google" ng-click="cadastrarSocial('google')">
-					<i class="fa fa-google"></i> Entrar com o google+
+		<div class="row">
+			<div class="form-group col-xs-12">
+				<label for="email" class="display-inline">E-mail:*</label>
+				<input id="email" class="form-control" type="email" ng-model="usuario.email" ng-required="true">
+			</div>
+		</div>
+		
+		<div class="col-xs-12">
+			<div class="checkbox input-md text-center">
+				<label class="vcenter">
+					<input type="checkbox"> Lembrar usuario?
+				</label>
+			</div>
+		</div>
+
+		<button ng-disabled="cadastro.$invalid" type="submit" class="btn btn-default button-cadastrar">Cadastrar</button>
+
+		<div class="mt-1">
+			<div class="col-xs-12">
+				<a class="btn btn-block btn-social btn-facebook" ng-click="cadastrarSocial('facebook')">
+					<i class="fa fa-facebook"></i>
+					<div class="text-center">
+						<span>Entrar com facebook</span>
+					</div>
 				</a>
 			</div>
 		</div>
 	</form>
+
 </div>

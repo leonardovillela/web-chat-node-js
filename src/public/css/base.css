@@ -34,7 +34,6 @@ footer {
 	border-bottom: solid !important;
   	border-bottom-width: 2px !important;
   	border-color: inherit !important;
-	
 }
 
 .botao-enviar-mensagem {
@@ -86,7 +85,7 @@ footer {
 	}
 	.button-cadastrar {
 		background-color: inherit;
-		width: 18.5%;
+		width: 96%;
 		height: 3.25em;
 		margin-left: 1.25%;
 	}
@@ -107,6 +106,12 @@ footer {
 		height: 25.5%;
 		margin-left: 1.25%;
 	}
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
 
 .display-inline {
