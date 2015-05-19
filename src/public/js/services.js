@@ -1,7 +1,11 @@
 angular.module('services', [])
 
-.factory('GerarIdUsuario', ['$resource', function($resource) {
-	return $resource('/id');
+.factory('UsuarioResource', ['$resource', function($resource) {
+	return $resource('usuario/cadastrar', null, {
+		save: {
+			method: 'POST'
+		}
+	});
 }])
 
 .factory('WebSocketProvider', [function() {

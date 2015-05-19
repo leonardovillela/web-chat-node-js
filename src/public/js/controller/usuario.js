@@ -17,20 +17,23 @@ angular.module('usuarioController', [])
 }])
 
 .controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'helloProvider',
-		function($scope, GerarIdUsuario, $state, helloProvider) {
+	'UsuarioResource', function($scope, GerarIdUsuario, $state, 
+	helloProvider, UsuarioResource) {
 
 	$scope.usuario = {};
 			
-	$scope.cadastrarUsuario = function() {
-		GerarIdUsuario.get({}, function(resp) {
-			$scope.usuario.id = resp.id;
-		
-			sessionStorage.setItem('id', resp.id);
-			sessionStorage.setItem('nome', $scope.usuario.nome);
+	// $scope.cadastrarUsuario = function() {
+	// 	UsuarioResource.save($scope.usuario);
 
-			$state.go('usuario.principal');
-		});
-	};
+	// 	GerarIdUsuario.get({}, function(resp) {
+	// 		$scope.usuario.id = resp.id;
+		
+	// 		sessionStorage.setItem('id', resp.id);
+	// 		sessionStorage.setItem('nome', $scope.usuario.nome);
+
+	// 		$state.go('usuario.principal');
+	// 	});
+	// };
 	
 	$scope.cadastrarSocial = function(redeSocial) {
 		helloProvider(redeSocial).login();

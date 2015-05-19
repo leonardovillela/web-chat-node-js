@@ -3,34 +3,73 @@
 	<form ng-submit="cadastrarUsuario()" name="cadastro" novalidate>
 
 		<div class="row">
+		
+			<div class="form-group col-xs-12">
+				<img ng-src="{{usuario.imagem}}" alt="imagem-do-usuario" class="img-circle">	
+			</div>
+
 			<div class="form-group col-xs-6">
-				<label for="nome" class="display-inline">Apelido:*</label>
-				<input id="nome" class="form-control" type="text" ng-model="usuario.nome" ng-required="true">
+				<label for="nome" class="display-inline">Usuario:*</label>
+				<input id="nome" name="nome" class="form-control" type="text" ng-model="usuario.nome"
+				 ng-required="true">
+
+				<div ng-show="cadastro.nome.$invalid && cadastro.nome.$dirty" class="alert alert-danger mt-1" role="alert">
+				  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				  	<span class="sr-only">Error:</span>
+					<span ng-show="cadastro.nome.$error.required">
+						Usuario e um campo de preenchimento obrigatorio
+					</span>
+				</div>
 			</div>
 
 			<div class="form-group col-xs-6">
 				<label for="senha" class="display-inline">Senha:*</label>
-				<input id="senha" class="form-control" type="text" ng-model="usuario.senha" ng-required="true">
+				<input id="senha" name="senha" class="form-control" type="text" ng-model="usuario.senha" ng-required="true" ng-maxlength="16">
+
+				<div ng-show="cadastro.senha.$invalid && cadastro.senha.$dirty" class="alert alert-danger mt-1" role="alert">
+				  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				  	<span class="sr-only">Error:</span>
+					<span ng-show="cadastro.senha.$error.required">
+						Senha e um campo de preenchimento obrigatorio
+					</span>
+
+					<span ng-show="cadastro.senha.$error.maxlength">
+						Senha tem no maximo 16 caracteres
+					</span>					
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="form-group col-xs-12">
 				<label for="email" class="display-inline">E-mail:*</label>
-				<input id="email" class="form-control" type="email" ng-model="usuario.email" ng-required="true">
+				<input id="email" name="email" class="form-control" type="text" ng-model="usuario.email" ng-required="true">
+			</div>
+
+			<div ng-show="cadastro.email.$invalid && cadastro.email.$dirty" class="alert alert-danger col-xs-6 
+				col-xs-offset-3 text-center" role="alert">
+
+			  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			  	<span class="sr-only">Error:</span>
+				<span ng-show="cadastro.email.$error.required">
+					E-mail e um campo de preenchimento obrigatorio
+				</span>
+
 			</div>
 		</div>
 		
 		<div class="col-xs-12">
 			<div class="checkbox input-md text-center">
 				<label class="vcenter">
-					<input type="checkbox"> Lembrar usuario?
+					<input type="checkbox" ng-model="usuario.lembrar"> Lembrar usuario?
 				</label>
 			</div>
 		</div>
 
-		<button ng-disabled="cadastro.$invalid" type="submit" class="btn btn-default button-cadastrar">Cadastrar</button>
-
+		<button ng-click="cadastrarUsuario()" ng-disabled="cadastro.$invalid" class="btn btn-default button-cadastrar">
+			Cadastrar
+		</button>
+		
 		<div class="mt-1">
 			<div class="col-xs-12">
 				<a class="btn btn-block btn-social btn-facebook" ng-click="cadastrarSocial('facebook')">
