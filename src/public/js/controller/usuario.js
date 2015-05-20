@@ -16,24 +16,23 @@ angular.module('usuarioController', [])
 	};
 }])
 
-.controller('UsuarioCadastro', ['$scope', 'GerarIdUsuario', '$state', 'helloProvider',
-	'UsuarioResource', function($scope, GerarIdUsuario, $state, 
-	helloProvider, UsuarioResource) {
+.controller('UsuarioCadastro', ['$scope', '$state', 'helloProvider',
+	'UsuarioResource', function($scope, $state, helloProvider,
+	 UsuarioResource) {
 
 	$scope.usuario = {};
+
+	$scope.usuario.imagem = '../../images/usuario-sem-imagem.png';
 			
-	// $scope.cadastrarUsuario = function() {
-	// 	UsuarioResource.save($scope.usuario);
-
-	// 	GerarIdUsuario.get({}, function(resp) {
-	// 		$scope.usuario.id = resp.id;
+	$scope.cadastrarUsuario = function() {
+		$scope.usuario.imagem =(angular.element('#usuario-img')[0]).src;
 		
-	// 		sessionStorage.setItem('id', resp.id);
-	// 		sessionStorage.setItem('nome', $scope.usuario.nome);
-
-	// 		$state.go('usuario.principal');
-	// 	});
-	// };
+		UsuarioResource.save($scope.usuario, function(resp)) {
+			sessionStorage.setItem('id', resp.id);
+			sessionStorage.setItem('nome', $scope.usuario.nome);
+			$state.go('usuario.principal');
+		};
+	};
 	
 	$scope.cadastrarSocial = function(redeSocial) {
 		helloProvider(redeSocial).login();

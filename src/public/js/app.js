@@ -4,8 +4,11 @@ angular.module('WebChat', [
 	'ui.router',
 	'ui.bootstrap',
 	
+	'flow',
+
 	'ngSanitize',
 	'ngHello',
+
 	'emoji',
 	
 	'services',

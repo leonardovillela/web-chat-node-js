@@ -14,12 +14,22 @@ module.exports = function(grunt) {
 			'target': {
 				src: './src/public/index.html'
 			}
+		},
+
+		'bower': {
+			'install': {
+				'options': {
+					targetDir: './bower_components',
+					cleanTargetDir: true
+				}
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-http-server');
 	grunt.loadNpmTasks('grunt-wiredep');
+	grunt.loadNpmTasks('grunt-bower-task');
 
-	grunt.registerTask('build', ['wiredep:target']);
+	grunt.registerTask('build', ['bower:install', 'wiredep:target']);
 	grunt.registerTask('server', ['http-server:dev']);
 };

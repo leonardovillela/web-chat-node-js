@@ -4,10 +4,10 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var chat = require('./services/chat');
-var routes = require('./routes');
+//var routes = require('routes');
 var bodyParser = require('body-parser');
 
-app.get('/id', routes.getId);
+//app.get('/id', routes.getId);
 
 app.use(express.static(path.join(__dirname, '../../')));
 app.use(express.static(path.join(__dirname, '../public')));
