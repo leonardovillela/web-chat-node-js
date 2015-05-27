@@ -1,7 +1,7 @@
 angular.module('services', [])
 
 .factory('UsuarioResource', ['$resource', function($resource) {
-	return $resource('usuario/cadastrar', null, {
+	return $resource('rest/cadastrar', null, {
 		save: {
 			method: 'POST'
 		}

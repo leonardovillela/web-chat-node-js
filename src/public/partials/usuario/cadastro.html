@@ -7,7 +7,7 @@
 
 				<div class="form-group col-xs-12 col-md-3">
 					<div class="text-center" flow-init>
-						<img ng-src="{{usuario.imagem}}" flow-img="$flow.files[$flow.files.length - 1]" alt="imagem-do-usuario" class="img-circle" width="140px" height="140px">
+						<img ng-src="{{usuario.imagem}}" flow-img="$flow.files[$flow.files.length - 1]" alt="imagem-do-usuario" id="usuario-img" class="img-circle" width="140px" height="140px">
 
 						<span class="btn btn-info mt-1" flow-btn>
 							Upload
@@ -33,7 +33,7 @@
 
 				<div class="form-group col-xs-6">
 					<label for="senha" class="display-inline">Senha:*</label>
-					<input id="senha" name="senha" class="form-control" type="text" ng-model="usuario.senha" ng-required="true" ng-maxlength="16">
+					<input id="senha" name="senha" class="form-control" type="password" ng-model="usuario.senha" ng-required="true" ng-maxlength="16">
 
 					<div ng-show="cadastro.senha.$invalid && cadastro.senha.$dirty" class="alert alert-danger mt-1" role="alert">
 					  	<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -76,7 +76,7 @@
 			</div>
 		</div>
 
-		<button ng-click="cadastrarUsuario()" ng-disabled="cadastro.$invalid" class="btn btn-default button-cadastrar">
+		<button ng-disabled="cadastro.$invalid" class="btn btn-default button-cadastrar">
 			Cadastrar
 		</button>
 		

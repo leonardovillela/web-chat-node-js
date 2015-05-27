@@ -1,51 +1,54 @@
 angular.module('usuarioController', [])
 
-.controller('UsuarioHome', ['$scope', '$state', '$rootScope', '$modal', function($scope, $state, $rootScope) {
+.controller('UsuarioHome', ['$scope', '$state', '$rootScope', '$modal',
+	function($scope, $state, $rootScope) {
 	
-	$scope.entrar = function() {
-		if (sessionStorage.getItem('nome') == null || sessionStorage.getItem('nome') == undefined) {
-			$state.go('usuario.cadastrar');
-		} else {	
-			$rootScope.usuario = {
-				nome: sessionStorage.getItem('nome'), 
-				id: sessionStorage.getItem('id')
-			};
+		$scope.entrar = function() {
+			if (sessionStorage.getItem('nome') == null || sessionStorage.getItem('nome') == undefined) {
+				$state.go('usuario.cadastrar');
+			} else {	
+				$rootScope.usuario = {
+					nome: sessionStorage.getItem('nome'), 
+					id: sessionStorage.getItem('id')
+				};
 
-			$state.go('usuario.principal');		
-		}
-	};
-}])
+				$state.go('usuario.principal');		
+			}
+		};
+	}
+])
 
 .controller('UsuarioCadastro', ['$scope', '$state', 'helloProvider',
 	'UsuarioResource', function($scope, $state, helloProvider,
 	 UsuarioResource) {
 
-	$scope.usuario = {};
+		$scope.usuario = {};
 
-	$scope.usuario.imagem = '../../images/usuario-sem-imagem.png';
+		$scope.usuario.imagem = '../../images/usuario-sem-imagem.png';
+				
+		$scope.cadastrarUsuario = function() {
+			$scope.usuario.imagem = (angular.element('#usuario-img')[0]).src;
 			
-	$scope.cadastrarUsuario = function() {
-		$scope.usuario.imagem =(angular.element('#usuario-img')[0]).src;
-		
-		UsuarioResource.save($scope.usuario, function(resp)) {
-			sessionStorage.setItem('id', resp.id);
-			sessionStorage.setItem('nome', $scope.usuario.nome);
-			$state.go('usuario.principal');
+			UsuarioResource.save($scope.usuario, function(resp) {
+				sessionStorage.setItem('id', resp.id);
+				sessionStorage.setItem('nome', $scope.usuario.nome);
+				$state.go('usuario.principal');
+			});
 		};
-	};
-	
-	$scope.cadastrarSocial = function(redeSocial) {
-		helloProvider(redeSocial).login();
-	};
-	
-	helloProvider.on('auth.login', function(auth) {
-		helloProvider(auth.network).api('/me').then(function(responseDataUser) {
-			
-			$scope.usuario.nome = responseDataUser.first_name + ' ' + responseDataUser.last_name;
-			
-			$scope.cadastrarUsuario();
+		
+		$scope.cadastrarSocial = function(redeSocial) {
+			helloProvider(redeSocial).login();
+		};
+		
+		helloProvider.on('auth.login', function(auth) {
+			helloProvider(auth.network).api('/me').then(function(responseDataUser) {
+				
+				$scope.usuario.nome = responseDataUser.first_name + ' ' + responseDataUser.last_name;
+				
+				//$scope.cadastrarUsuario();
+			});
 		});
-	});
-}])
+	}
+])
 
 ;
