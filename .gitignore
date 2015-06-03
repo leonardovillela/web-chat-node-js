@@ -24,6 +24,8 @@ build/Release
 
 #Files for editor
 .settings
+.brackets.json
+.idea
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git

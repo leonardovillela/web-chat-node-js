@@ -18,21 +18,24 @@ angular.module('usuarioController', [])
 	}
 ])
 
-.controller('UsuarioCadastro', ['$scope', '$state', 'helloProvider',
-	'UsuarioResource', function($scope, $state, helloProvider,
-	 UsuarioResource) {
+.controller('UsuarioCadastro', ['$scope', '$state', 'helloProvider', 'utils',
+	'UsuarioResource', 'LoginService', function($scope, $state, helloProvider, 
+	utils, UsuarioResource, LoginService) {
 
 		$scope.usuario = {};
-
+		
 		$scope.usuario.imagem = '../../images/usuario-sem-imagem.png';
+
+		$scope.validacaoUsuarioEmail = utils.regexEmail;
 				
 		$scope.cadastrarUsuario = function() {
 			$scope.usuario.imagem = (angular.element('#usuario-img')[0]).src;
 			
 			UsuarioResource.save($scope.usuario, function(resp) {
-				sessionStorage.setItem('id', resp.id);
-				sessionStorage.setItem('nome', $scope.usuario.nome);
-				$state.go('usuario.principal');
+				LoginService.login({
+					usuario: $scope.usuario.nome,
+					senha: $scope.usuario.senha
+				});
 			});
 		};
 		
@@ -50,5 +53,12 @@ angular.module('usuarioController', [])
 		});
 	}
 ])
+
+.controller('UsuarioLogin', ['$scope', 'LoginService', function($scope, 
+	LoginService) {
+
+		$scope.login = LoginService.login($scope.usuario);
+	}
+]);
 
 ;

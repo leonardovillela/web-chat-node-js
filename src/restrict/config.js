@@ -1,31 +1,59 @@
-var load = require('express-load');
-
+var express = require('express');
+var router = express.Router();
 var path = require('path');
 var bodyParser = require('body-parser');
 
 var morgan = require('morgan');
 
-module.exports = function(express) {
+var jwt = require('jwt-simple');
+
+//Routes
+var usuarioRoute = require('./routes/usuario.js');
+
+module.exports = function() {
 	var app = express();
 
+	app.set('port', 3000);
+	app.set('superSecret', 'webChatNodejs');
+
 	app.use(morgan('dev'));
+
+	app.use('/rest', router);
 
 	app.use(express.static(path.join(__dirname, '../../')));
 	app.use(express.static(path.join(__dirname, '../public')));
 
-	app.use(bodyParser.urlencoded({limit: '50mb'}));
-	app.use(bodyParser.json({limit: '50mb'}));
-	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({
+	router.use(bodyParser.urlencoded({limit: '50mb'}));
+	router.use(bodyParser.json({limit: '50mb'}));
+	router.use(bodyParser.json());
+	router.use(bodyParser.urlencoded({
 		extended: true
 	}));
 
-	app.set('port', 3000);
+	router.use(function(req, res, next) {
+		var token = req.body.token || req.query.token 
+			|| req.headers['x-access-token'];
 
-	load('models')
-		.then('controllers')
-		.then('routes')
-		.into(app);
+		if (token) {
+			jwt.verify(token, app.get('superSecret'), function(err, encoded) {
+				if (err) {
+					return res.status(401).send({
+						mensagem: 'erro ao autenticar o token'
+					});
+				} else {
+					req.decoded = decoded;
+
+					next();
+				}
+			});
+		} else {
+			return res.status(401).send({
+				mensagem: 'Nao tem token criado'
+			});
+		}
+	});
+
+	usuarioRoute(app);
 
 	return app;
 };

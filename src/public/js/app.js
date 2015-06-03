@@ -18,4 +18,14 @@ angular.module('WebChat', [
 	'menuController'
 ])
 
+.controller('MainCtrl', ['$rootScope', 'UsuarioService', '$state', function($rootScope,
+	UsuarioService, $state) {
+		$rootScope.$on('unauthorized', function() {
+			UsuarioService.setUsuarioAtual(null);
+
+			$state.go('usuario.login');
+		});
+	}
+])
+
 ;

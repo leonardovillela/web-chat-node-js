@@ -33,6 +33,11 @@ angular.module('WebChat')
 			url: '/cadastrar',
 			templateUrl: '/src/public/partials/usuario/cadastro.html',
 		})
+
+		.state('usuario.login', {
+			url: '/login',
+			templateUrl: '<h1>Você precisa se logar!</h1>'
+		})
 	
 	;
 });

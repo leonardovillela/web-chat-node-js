@@ -1,4 +1,4 @@
-var mongoose = require('./connectionFactory.js');
+var mongoose = require('./connectionFactory');
 var bcrypt = require('bcrypt-nodejs');
 
 var usuarioSchema = new mongoose.Schema({

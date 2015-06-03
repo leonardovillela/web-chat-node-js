@@ -1,7 +1,4 @@
-var express = require('express');
-var app = require('./config')(express);
-
-var jwt = require('jwt-simple');
+var app = require('./config')();
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
