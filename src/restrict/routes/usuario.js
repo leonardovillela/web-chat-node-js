@@ -1,6 +1,6 @@
-var usuarioController = require('../controllers/usuario.js')();
+module.exports = function(app) {
+	var usuarioController = require('../controllers/usuario.js')(app);
 
-module.exports = function(router) {
-	router.post('/cadastrar', usuarioController.cadastrar);
-	router.post('/login', usuarioController.login);
+	app.get('router').post('/cadastrar', usuarioController.cadastrar);
+	app.get('router').post('/login', usuarioController.login);
 }

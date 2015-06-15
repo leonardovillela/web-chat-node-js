@@ -1,7 +1,26 @@
 angular.module('services', [])
 
+.service('UsuarioService', ['localStorageService', function(localStorageService) {
+	var usuarioAtual = null;
+
+	this.setUsuarioAtual = function(usuario) {
+		usuarioAtual = usuario;
+
+		localStorageService.set('usuario', usuario);
+		return usuarioAtual;
+	};
+
+	this.getUsuarioAtual = function() {
+		if (!usuarioAtual) {
+			usuarioAtual = localStorageService.get('usuario');
+		}
+
+		return usuarioAtual;
+	};
+}])
+
 .service('APIInterceptor', ['$rootScope', 'UsuarioService', function($rootScope,
-	usuarioService) {
+	UsuarioService) {
 
 	var service = this;
 
@@ -13,12 +32,12 @@ angular.module('services', [])
 			config.headers.authorization = token;
 		}
 
-		return cofig;
+		return config;
 	};
 
 	service.responseError = function(response) {
 		if (response.status === 401) {
-			$rootScope.broadcast('unathorized');
+			$rootScope.$broadcast('unathorized');
 		}
 
 		return response;
@@ -59,28 +78,6 @@ angular.module('services', [])
 			url: 'rest/login'
 		}
 	});
-}])
-
-.service('UsuarioService', ['localStorageService', function(localStorageService) {
-	var service = this;
-	var usuarioAtual = null;
-
-	if (localStorageService.isSupoted) {
-		service.setUsuarioAtual = function(usuario) {
-			usuarioAtual = usuario;
-
-			localStorageService.set('usuario', usuario);
-			return usuarioAtual;
-		}
-
-		service.getUsuarioAtual = function() {
-			if (!usuarioAtual) {
-				usuarioAtual = localStorageService.get('usuario');
-			}
-
-			return usuarioAtual;
-		}
-	}
 }])
 
 .factory('WebSocketProvider', [function() {

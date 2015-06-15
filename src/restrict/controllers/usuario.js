@@ -1,5 +1,5 @@
 var usuarioModel = require('../models/usuarioModel.js');
-var jwt = require('jwt-simple');
+var jwt = require('jsonwebtoken');
 
 module.exports = function(app) {	
 	var controller = {};
@@ -23,11 +23,11 @@ module.exports = function(app) {
 	};
 
 	controller.login = function(req, res) {
-		var usuario = req.body.usuario;
+		var usuarioReq = req.body.usuario;
 		var senha = req.body.senha;
 
-	   	User.findOne({
-	     	usuario: usuario
+	   	usuarioModel.findOne({
+	     	usuario: usuarioReq
 	   	}, function(err, user) {
 
 	 	    if (err) throw err;

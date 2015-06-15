@@ -9,6 +9,8 @@ angular.module('WebChat', [
 	'ngSanitize',
 	'ngHello',
 
+	'LocalStorageModule',
+
 	'emoji',
 	
 	'services',

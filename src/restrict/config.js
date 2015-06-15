@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 
 var morgan = require('morgan');
 
-var jwt = require('jwt-simple');
+var jwt = require('jsonwebtoken');
 
 //Routes
 var usuarioRoute = require('./routes/usuario.js');
@@ -15,6 +15,7 @@ module.exports = function() {
 
 	app.set('port', 3000);
 	app.set('superSecret', 'webChatNodejs');
+	app.set('router', router);
 
 	app.use(morgan('dev'));
 
@@ -29,6 +30,8 @@ module.exports = function() {
 	router.use(bodyParser.urlencoded({
 		extended: true
 	}));
+
+	usuarioRoute(app);
 
 	router.use(function(req, res, next) {
 		var token = req.body.token || req.query.token 
@@ -52,8 +55,6 @@ module.exports = function() {
 			});
 		}
 	});
-
-	usuarioRoute(app);
 
 	return app;
 };

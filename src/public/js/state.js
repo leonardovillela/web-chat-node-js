@@ -36,7 +36,7 @@ angular.module('WebChat')
 
 		.state('usuario.login', {
 			url: '/login',
-			templateUrl: '<h1>Você precisa se logar!</h1>'
+			templateUrl: '/src/public/partials/usuario/login.html'
 		})
 	
 	;
