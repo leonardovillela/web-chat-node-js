@@ -38,8 +38,5 @@
     "grunt-bower-task": "^0.4.0",
     "grunt-http-server": "^1.2.0",
     "morgan": "^1.5.3"
-  },
-  "engines": {
-    "node": "0.10.33"
   }
 }
