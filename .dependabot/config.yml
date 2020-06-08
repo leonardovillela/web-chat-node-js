@@ -6,10 +6,10 @@ update_configs:
     target_branch: "master"
     allowed_updates:
       - match:
-          dependency_type: "production"
+          dependency_type: "direct"
           update_type: "security"
     automerged_updates:
       - match:
-          dependency_type: "production"
+          dependency_type: "all"
           update_type: "security:patch"
     version_requirement_updates: "increase_versions"
