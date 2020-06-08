@@ -28,7 +28,7 @@
     "express-load": "^1.1.14",
     "grunt-wiredep": "^2.0.0",
     "jsonwebtoken": "^0.3.0",
-    "logkitty": "0.7.0",
+    "logkitty": "0.7.1",
     "moment": "^2.10.3",
     "mongoose": "^4.0.3",
     "mout": "^0.11.0",
