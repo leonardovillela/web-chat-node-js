@@ -4,10 +4,6 @@ update_configs:
     directory: "/"
     update_schedule: "live"
     target_branch: "master"
-    allowed_updates:
-      - match:
-          dependency_type: "direct"
-          update_type: "security"
     automerged_updates:
       - match:
           dependency_type: "all"
