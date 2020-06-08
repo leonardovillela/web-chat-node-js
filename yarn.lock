@@ -251,11 +251,6 @@ base64id@1.0.0:
   resolved "https://registry.yarnpkg.com/base64id/-/base64id-1.0.0.tgz#47688cb99bb6804f0e06d3e763b1c32e57d8e6b6"
   integrity sha1-R2iMuZu2gE8OBtPnY7HDLlfY5rY=
 
-base64url@0.0.6, base64url@~0.0.3:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/base64url/-/base64url-0.0.6.tgz#9597b36b330db1c42477322ea87ea8027499b82b"
-  integrity sha1-lZezazMNscQkdzIuqH6oAnSZuCs=
-
 basic-auth@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
@@ -437,6 +432,11 @@ bson@~1.0.4:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/bson/-/bson-1.0.9.tgz#12319f8323b1254739b7c6bef8d3e89ae05a2f57"
   integrity sha512-IQX9/h7WdMBIW/q/++tGd+emQr0XMdeZ6icnT/74Xk9fnabWn+gZgpE+9V+gujL3hhJOoNrnDVY7tWdzc7NUTg==
+
+buffer-equal-constant-time@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
+  integrity sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=
 
 buffer-shims@~1.0.0:
   version "1.0.0"
@@ -823,6 +823,13 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
+
+ecdsa-sig-formatter@1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz#ae0f0fa2d85045ef14a817daa3ce9acd0489e5bf"
+  integrity sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ==
+  dependencies:
+    safe-buffer "^5.0.1"
 
 ecstatic@^1.4.0:
   version "1.4.1"
@@ -1714,12 +1721,12 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
-jsonwebtoken@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-0.3.0.tgz#82b4a85b568d4e83c7e1d6735b0be753997c79fb"
-  integrity sha1-grSoW1aNToPH4dZzWwvnU5l8efs=
+jsonwebtoken@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-5.0.0.tgz#8244ac5921491a933cfe996f3f142bea1e38adbc"
+  integrity sha1-gkSsWSFJGpM8/plvPxQr6h44rbw=
   dependencies:
-    jws "~0.2.2"
+    jws "^3.0.0"
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -1736,20 +1743,22 @@ junk@~1.0.0:
   resolved "https://registry.yarnpkg.com/junk/-/junk-1.0.3.tgz#87be63488649cbdca6f53ab39bec9ccd2347f592"
   integrity sha1-h75jSIZJy9ym9Tqzm+yczSNH9ZI=
 
-jwa@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/jwa/-/jwa-0.0.1.tgz#2d05f54d68f170648c30fe45944731a388cd07cc"
-  integrity sha1-LQX1TWjxcGSMMP5FlEcxo4jNB8w=
+jwa@^1.4.1:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/jwa/-/jwa-1.4.1.tgz#743c32985cb9e98655530d53641b66c8645b039a"
+  integrity sha512-qiLX/xhEEFKUAJ6FiBMbes3w9ATzyk5W7Hvzpa/SLYdxNtng+gcurvrI7TbACjIXlsJyr05/S1oUhZrc63evQA==
   dependencies:
-    base64url "~0.0.3"
+    buffer-equal-constant-time "1.0.1"
+    ecdsa-sig-formatter "1.0.11"
+    safe-buffer "^5.0.1"
 
-jws@~0.2.2:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/jws/-/jws-0.2.6.tgz#e9b7e9ac8d2ac1067413233bc6c20fbd8868e9ba"
-  integrity sha1-6bfprI0qwQZ0EyM7xsIPvYho6bo=
+jws@^3.0.0:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/jws/-/jws-3.2.2.tgz#001099f3639468c9414000e99995fa52fb478304"
+  integrity sha512-YHlZCB6lMTllWDtSPHz/ZXTsi8S00usEV6v1tjq8tOUZzw7DpSDWVXjXDre6ed1w/pd495ODpHZYSdkRTsa0HA==
   dependencies:
-    base64url "0.0.6"
-    jwa "0.0.1"
+    jwa "^1.4.1"
+    safe-buffer "^5.0.1"
 
 kareem@1.5.0:
   version "1.5.0"
