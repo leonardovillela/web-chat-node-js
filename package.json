@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Web chat in nodejs",
   "main": "server.js",
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install",
+  "scripts": 
     "start": "node server.js"
   },
   "repository": {
