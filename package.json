@@ -1,6 +1,6 @@
 {
   "name": "web-chat-node-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web chat in nodejs",
   "main": "server.js",
   "scripts": {
